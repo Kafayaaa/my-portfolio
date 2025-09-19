@@ -2,7 +2,7 @@
 
 :root {
   --background: #fcffff;
-  --foreground: #020707;
+  --foreground: #02010a;
 }
 
 /* @theme inline {
@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #020707;
+    --background: #02010a;
     --foreground: #fcffff;
   }
 }
@@ -26,12 +26,12 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Bricolage Grotesque", Arial, Helvetica, sans-serif;
+  font-family: "Comfortaa", "Big Shoulders", Arial, Helvetica, sans-serif;
 }
 
 .theme-light {
   --background: #fcffff;
-  --foreground: #020707;
+  --foreground: #02010a;
   background: var(--background);
   color: var(--foreground);
 }
@@ -41,4 +41,12 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.bg-background {
+  background: var(--background);
+}
+
+.bg-gradient {
+  background: linear-gradient(90deg, #02010a 0%, #06031b 100%);
 }

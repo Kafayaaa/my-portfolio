@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
+import { Comfortaa } from "next/font/google";
 import "./globals.css";
 
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: "--font-bricolage-grotesque",
+const comfortaa = Comfortaa({
+  variable: "--font-comfortaa",
   subsets: ["latin"],
 });
 
@@ -19,8 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${bricolageGrotesque.variable} antialiased`}>
+      <body className={`${comfortaa.variable} antialiased overflow-x-hidden`}>
+        {/* <div className="w-screen min-h-screen px-7 md:px-12 lg:px-43 text-foreground relative"> */}
         {children}
+        {/* </div> */}
       </body>
     </html>
   );
