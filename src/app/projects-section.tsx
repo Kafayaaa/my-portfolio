@@ -24,75 +24,25 @@ export default function ProjectsSection() {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "Sistem Prediksi Penjualan",
       category: "web-development",
       description:
-        "Full-stack e-commerce platform dengan React, Node.js, dan MongoDB. Fitur cart, payment gateway, dan admin dashboard.",
-      image: "/images/projects/ecommerce.jpg",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "Tailwind"],
-      liveUrl: "#",
-      githubUrl: "#",
+        "Full-stack forecast system for forecasting next month items sold. Featuring basic CRUD operations and user authentication.",
+      image: "/images/projects/forecast-system.png",
+      technologies: ["Laravel", "PHP", "MySQL", "Tailwind"],
+      url: "https://github.com/Kafayaaa/forecast-system",
       featured: true,
     },
     {
       id: 2,
-      title: "Finance Dashboard UI",
+      title: "Ponpes Ulumul Qur'an",
       category: "ui-ux-design",
       description:
-        "Modern dashboard design untuk aplikasi keuangan dengan focus pada usability dan data visualization.",
-      image: "/images/projects/dashboard.jpg",
-      technologies: ["Figma", "Adobe XD", "UI Design", "Data Viz"],
-      liveUrl: "#",
-      githubUrl: "#",
+        "Design and prototype for Ulumul Qur'an Islamic Boarding School website.",
+      image: "/images/projects/ppuq-web.png",
+      technologies: ["Figma", "UI Design", "UX Research", "Prototyping"],
+      url: "https://www.figma.com/design/j37qkqDGbseX9RU9otbTlc/PPUQ-KALIBEBER-s-team-library?node-id=2313-3&t=Qo4PUUoOMdEWfrDl-1",
       featured: true,
-    },
-    {
-      id: 3,
-      title: "Brand Identity Package",
-      category: "graphic-design",
-      description:
-        "Complete brand identity including logo, color palette, typography, and marketing materials.",
-      image: "/images/projects/branding.jpg",
-      technologies: ["Illustrator", "Photoshop", "Branding", "Typography"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Portfolio Website",
-      category: "web-development",
-      description:
-        "Modern portfolio website dengan animations dan responsive design menggunakan Next.js dan Framer Motion.",
-      image: "/images/projects/portfolio.jpg",
-      technologies: ["Next.js", "TypeScript", "Framer Motion", "Tailwind"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Mobile App UI Design",
-      category: "ui-ux-design",
-      description:
-        "UI/UX design untuk mobile application dengan focus pada user experience dan accessibility.",
-      image: "/images/projects/mobile-app.jpg",
-      technologies: ["Figma", "Prototyping", "Mobile Design", "UX Research"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "Social Media Graphics",
-      category: "graphic-design",
-      description:
-        "Series of social media graphics and marketing materials for digital campaign.",
-      image: "/images/projects/social-media.jpg",
-      technologies: ["Photoshop", "Illustrator", "Social Media", "Marketing"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
     },
   ];
 
@@ -103,14 +53,29 @@ export default function ProjectsSection() {
     { id: "graphic-design", label: "Graphic Design" },
   ];
 
+  // Debug: Log untuk memastikan data projects ada
+  console.log("Projects data:", projects);
+  console.log("Active filter:", activeFilter);
+
   const filteredProjects =
     activeFilter === "all"
       ? projects
-      : projects.filter((project) => project.category === activeFilter);
+      : projects.filter((project) => {
+          console.log(
+            "Project category:",
+            project.category,
+            "Filter:",
+            activeFilter
+          );
+          return project.category === activeFilter;
+        });
+
+  // Debug: Log hasil filtering
+  console.log("Filtered projects:", filteredProjects);
 
   return (
     <section
-      id="portfolio"
+      id="projects"
       className="w-screen px-7 md:px-12 lg:px-43 py-20 md:py-28 relative z-10 bg-gradient"
     >
       {/* Background decorative elements */}
@@ -134,14 +99,14 @@ export default function ProjectsSection() {
             PROJECTS
           </p>
           <div className="w-24 h-2 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mb-6"></div>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          {/* <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             Koleksi project terbaik yang menunjukkan kemampuan dan kreativitas
             saya
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Filter Buttons */}
-        <motion.div
+        {/* <motion.div
           variants={fadeInUp}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
@@ -158,38 +123,101 @@ export default function ProjectsSection() {
               {filter.label}
             </button>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={fadeInUp}
-              whileHover={{ y: -5 }}
-              className="group relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
-            >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                variants={fadeInUp}
+                whileHover={{ y: -5 }}
+                className="group relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700"
+              >
+                {/* Project Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center">
+                    <Image
+                      src={project.image}
+                      alt={`Image of ${project.title}`}
+                      height={400}
+                      width={400}
+                      className="object-cover"
+                    />
+                  </div>
 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <div className="flex gap-4">
-                    <motion.a
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <div className="flex gap-4">
+                      <motion.a
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        href={project.url}
+                        className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-800 hover:bg-blue-500 hover:text-white transition-colors duration-300"
+                        title="Live Demo"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                      </motion.a>
+                    </div>
+                  </div>
+
+                  {/* Featured Badge */}
+                  {/* {project.featured && (
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      Featured
+                    </div>
+                  )} */}
+
+                  {/* Category Badge */}
+                  <div className="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full text-xs font-semibold capitalize">
+                    {project.category.replace("-", " ")}
+                  </div>
+                </div>
+
+                {/* Project Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-full border border-slate-200 dark:border-slate-600"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Project Links */}
+                  {/* <div className="flex justify-between items-center pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <a
                       href={project.liveUrl}
-                      className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-800 hover:bg-blue-500 hover:text-white transition-colors duration-300"
-                      title="Live Demo"
+                      className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-semibold flex items-center gap-2 transition-colors duration-300"
                     >
+                      Live Demo
                       <svg
-                        className="w-5 h-5"
+                        className="w-4 h-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -201,106 +229,43 @@ export default function ProjectsSection() {
                           d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                         />
                       </svg>
-                    </motion.a>
+                    </a>
 
-                    <motion.a
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
+                    <a
                       href={project.githubUrl}
-                      className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-slate-800 hover:bg-purple-500 hover:text-white transition-colors duration-300"
-                      title="View Code"
+                      className="text-slate-600 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-300 text-sm font-semibold flex items-center gap-2 transition-colors duration-300"
                     >
+                      Code
                       <svg
-                        className="w-5 h-5"
+                        className="w-4 h-4"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                       </svg>
-                    </motion.a>
-                  </div>
+                    </a>
+                  </div> */}
                 </div>
-
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    Featured
-                  </div>
-                )}
-
-                {/* Category Badge */}
-                <div className="absolute top-4 right-4 bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full text-xs font-semibold capitalize">
-                  {project.category.replace("-", " ")}
-                </div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">
-                  {project.title}
-                </h3>
-
-                <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs rounded-full border border-slate-200 dark:border-slate-600"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Project Links */}
-                <div className="flex justify-between items-center pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <a
-                    href={project.liveUrl}
-                    className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-semibold flex items-center gap-2 transition-colors duration-300"
-                  >
-                    Live Demo
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
-
-                  <a
-                    href={project.githubUrl}
-                    className="text-slate-600 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-300 text-sm font-semibold flex items-center gap-2 transition-colors duration-300"
-                  >
-                    Code
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))
+          ) : (
+            // Empty state ketika tidak ada project
+            <div className="col-span-full text-center py-12">
+              <div className="text-6xl mb-4">🔍</div>
+              <h3 className="text-xl font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                No projects found
+              </h3>
+              <p className="text-slate-500 dark:text-slate-500">
+                Tidak ada project yang ditemukan untuk kategori ini.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Call to Action */}
-        <motion.div variants={fadeInUp} className="text-center mt-16">
+        {/* <motion.div variants={fadeInUp} className="text-center mt-16">
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
-            Tertarik melihat lebih banyak project? Mari berkolaborasi!
+            Interest to see more? Check out my complete portfolio.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -315,7 +280,7 @@ export default function ProjectsSection() {
           >
             View Complete Portfolio
           </motion.button>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
   );
